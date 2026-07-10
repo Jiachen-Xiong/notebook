@@ -1,9 +1,10 @@
 ## 日常（add → commit → push → pull）
 
-1. `git add <文件>` / `.` / `-A` — 暂存
-2. `git commit -m "信息"` / `--amend` — 提交 / 修改上次提交
-3. `git push [-u origin main]` — 推送到远程
-4. `git pull [--rebase]` — 拉取远程更新
+1. `git add <文件>` / `.` / `-A`/ `-u`  — 暂存
+2. `git add -p <文件>` — 分块选择暂存，逐个确认
+3. `git commit -m "信息"` / `--amend` — 提交 / 修改上次提交
+4. `git push [-u origin main]` — 推送到远程
+5. `git pull [--rebase]` — 拉取远程更新
 
 ## 查看
 
@@ -12,6 +13,9 @@
 3. `git diff [--staged]` — 比较差异
 4. `git reflog` — 查看 HEAD 移动记录
 5. `git blame <文件>` — 每行最后修改者
+6. `git show <哈希>` — 显示一次提交的完整信息
+7. `git show --stat <哈希>` — 只看该提交改了哪些文件
+8. git log HEAD..origin/main  — 看有哪些新提交
 
 ## 撤销
 
@@ -20,7 +24,8 @@
 3. `git reset --soft/mixed/hard HEAD~1` — 回退提交
 4. `git revert <哈希>` — 反向提交（安全回退远程）
 5. `git stash [pop/list/apply/drop]` — 暂存/恢复工作区
-6. `git clean -fd` — 删除所有未跟踪文件和目录
+6. `git clean -fdxn` — 删除所有未跟踪文件和目录
+7. `--abort` — 放弃本次合并
 
 ## 分支
 
@@ -36,6 +41,8 @@
 2. `git remote add origin <地址>` — 添加远程
 3. `git remote set-url origin <地址>` — 修改远程地址
 4. `git fetch [origin main]` — 拉取远程信息（不合并）
+5. `git push --force-with-lease` — 更安全的强制推送
+6. `closes #1` — 自动关闭 #1 号 Issue
 
 ## 创建 / 获取
 
@@ -65,12 +72,3 @@
 6. `perf:` — 性能
 7. `test:` — 测试
 8. `chore:` — 杂项
-
-## 个人流程
-
-1. `git init && git add . && git commit -m "init"` — 初始化
-2. `git remote add origin <地址> && git push -u origin main` — 关联远程
-3. `git status && git add . && git commit -m "feat: ..." && git push` — 日常
-4. `git switch -c exp && ... && git switch main && git merge exp` — 分支试功能
-5. `git clean -fd` — 删除所有未跟踪的文件和目录 
-6. `git reflog` — 查看 HEAD 移动记录
